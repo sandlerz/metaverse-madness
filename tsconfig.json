@@ -21,7 +21,9 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "src",
+    "postcss.config.cjs",
+    "tailwind.config.cjs"
   ],
   "references": [
     {

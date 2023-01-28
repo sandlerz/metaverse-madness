@@ -1,32 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { Gallery } from './components/Gallery'
+import { Hero } from './components/Hero'
+import { Navigation } from './components/Navigation'
+import { Paragraph } from './components/Paragraph'
+import { SocialsIcons } from './components/SocialsIcons'
+import { string } from './data/strings'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { hero, sectionOne, gallery } = string
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount(count => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className="min-h-screen flex flex-col items-center  text-white  mx-auto py-9 relative">
+      <Navigation />
+      <SocialsIcons />
+      <Hero heroText={hero.text} />
+      <Paragraph eyeBrow={sectionOne.eyeBrow} paragraph={sectionOne.text} />
+      <Gallery
+        cards={gallery.cards}
+        eyeBrow={gallery.eyeBrow}
+        title={gallery.title}
+      />
     </div>
   )
 }
