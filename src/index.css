@@ -19,3 +19,21 @@ b {
 .page-width {
   @apply max-w-[1440px] px-32;
 }
+
+.galleryCard:hover *:not(.titleRotate) {
+  @apply opacity-100 text-left transition-all duration-1000 ease-out;
+}
+.galleryCard *:not(.absolute) {
+  @apply opacity-0;
+}
+.galleryCard:hover .titleRotate {
+  @apply opacity-0;
+}
+
+h3 {
+  @apply text-6xl font-bold text-center;
+}
+
+.section-space {
+  @apply my-10;
+}

@@ -5,11 +5,12 @@ import { EyeBrow } from '../EyeBrow'
 interface Props {
   eyeBrow: string
   paragraph: string
+  className: string
 }
 
-export const Paragraph = ({ eyeBrow, paragraph }: Props) => {
+export const Paragraph = ({ eyeBrow, paragraph, className }: Props) => {
   return (
-    <div className="page-width text-center">
+    <div className={`text-center ${className}`}>
       <EyeBrow eyeBrow={eyeBrow} />
       <InnerHTML
         html={paragraph}
