@@ -20,6 +20,7 @@ import { HighlightBlockBodyTitle } from './components/HighlightBlock/components/
 import { HighlightBlockBodyItemsV2 } from './components/HighlightBlock/components/HighlightBlockBody/components/HighlightBlockBodyItemsV2'
 import { BackgroundHoverEffect } from './components/BackgroundHoverEffect/BackgroundHoverEffect'
 import { HighlightBlockBodyItemsV3 } from './components/HighlightBlock/components/HighlightBlockBody/components/HighlightBlockBodyItemsV3'
+import { BgImagesDecoration } from './components/BgImagesDecoration/BgImagesDecoration'
 
 function App() {
   const {
@@ -31,11 +32,13 @@ function App() {
     highlightBlock2,
     highlightBlock3,
     highlightBlock4,
+    bgImgs,
   } = string
 
   const [backgroundColor, setBackgroundColor] = useState<RGBType>(
     initialBackgroundColor
   )
+
   const [backgroundImage, setBackgroundImage] = useState({
     onHover: false,
     img: '',
@@ -43,7 +46,7 @@ function App() {
 
   return (
     <main
-      className="min-h-screen flex flex-col items-center  text-white  mx-auto py-9 relative transition-[background] duration-500 z-20 "
+      className="min-h-screen flex flex-col items-center  text-white  mx-auto py-9 relative transition-[background] duration-500 z-20 overflow-hidden"
       style={{
         backgroundColor: `rgb(${Object.values(backgroundColor)})`,
       }}
@@ -125,6 +128,8 @@ function App() {
         img={backgroundImage.img}
         onHover={backgroundImage.onHover}
       />
+
+      <BgImagesDecoration bgImgs={bgImgs} />
     </main>
   )
 }

@@ -13,6 +13,14 @@ import itemImg1 from '../assets/itemsImages/img1.png'
 import itemImg2 from '../assets/itemsImages/img2.png'
 import itemImg3 from '../assets/itemsImages/img3.png'
 
+import bgColor1 from '../assets/BgBlurColor/1.png'
+import bgColor2 from '../assets/BgBlurColor/2.png'
+import bgColor3 from '../assets/BgBlurColor/3.png'
+import bgColor4 from '../assets/BgBlurColor/4.png'
+import bgColor5 from '../assets/BgBlurColor/5.png'
+import bgColor6 from '../assets/BgBlurColor/6.png'
+import bgColor7 from '../assets/BgBlurColor/7.png'
+
 import world from '../assets/world.png'
 
 export const string = {
@@ -119,4 +127,47 @@ export const string = {
       },
     ],
   },
+  bgImgs: [
+    {
+      url: bgColor1,
+      top: -718,
+      left: -289,
+    },
+    {
+      url: bgColor2,
+      top: -337,
+      right: 159,
+    },
+    {
+      url: bgColor3,
+      top: 650,
+      right: -800,
+    },
+    {
+      url: bgColor4,
+      top: 1000,
+      left: -80,
+    },
+    {
+      url: bgColor5,
+      top: 0,
+      left: 0,
+    },
+    {
+      url: bgColor6,
+      bottom: 675,
+      left: -50,
+    },
+    {
+      url: bgColor4,
+      bottom: 500,
+      left: -250,
+    },
+    {
+      url: bgColor7,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+  ],
 }
