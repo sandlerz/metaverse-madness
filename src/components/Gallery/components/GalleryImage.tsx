@@ -6,7 +6,9 @@ export const GalleryImage = () => {
   const imgEl = useRef(null)
 
   const {
-    data: { img },
+    card: {
+      image: { url },
+    },
     setImgRGB,
   } = useGalleryCardContext()
 
@@ -14,7 +16,8 @@ export const GalleryImage = () => {
     <img
       ref={imgEl}
       className="absolute h-full object-cover object-center -z-10 left-[2%] top-0 rounded-2xl w-[98%]  transition-all duration-500 ease-linear"
-      src={img}
+      src={url}
+      crossOrigin="anonymous" // in order cavas can work with others domain
       onLoad={event => {
         setImgRGB(getAverageRGB(event.target as HTMLImageElement))
       }}

@@ -3,6 +3,7 @@ export const getAverageRGB = (imgEl: HTMLImageElement) => {
     defaultRGB = { r: 0, g: 0, b: 0 } // for non-supporting envs
   const canvas = document.createElement('canvas')
   const context = canvas.getContext && canvas.getContext('2d')
+
   let data,
     i = -4
   const rgb = { r: 0, g: 0, b: 0 }

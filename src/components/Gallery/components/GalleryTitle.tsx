@@ -2,7 +2,7 @@ import { useGalleryCardContext } from './GalleryCard'
 
 export const GalleryTitle = () => {
   const {
-    data: { title },
+    card: { title },
   } = useGalleryCardContext()
 
   return (

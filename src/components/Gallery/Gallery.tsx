@@ -11,14 +11,14 @@ interface Props {
   eyeBrow: string
   title: string
   children: React.ReactNode | React.ReactNode[]
-  setColorHover?: Dispatch<SetStateAction<RGBType>>
+  setColorHover?: Dispatch<SetStateAction<RGBType | undefined>>
   initialColorHover?: RGBType
   className?: string
   setImageHover?: Dispatch<SetStateAction<{ onHover: boolean; img: string }>>
 }
 
 interface GalleryContextValue {
-  setColorHover?: Dispatch<SetStateAction<RGBType>>
+  setColorHover?: Dispatch<SetStateAction<RGBType | undefined>>
   initialColorHover?: RGBType
   setImageHover?: Dispatch<SetStateAction<{ onHover: boolean; img: string }>>
 }
@@ -36,9 +36,9 @@ export const Gallery = ({
   setImageHover,
 }: Props) => {
   return (
-    <div className={`text-center mt-40 ${className}`}>
+    <div className={`text-center ${className || ''}`}>
       <EyeBrow eyeBrow={eyeBrow} className="mb-6" />
-      <h2 className="text-6xl font-bold w-[75%] mx-auto mb-4">{title}</h2>
+      <h2 className="text-6xl font-bold w-[75%] mx-auto mb-8">{title}</h2>
       <div className="flex h-96">
         <GalleryContext.Provider
           value={{

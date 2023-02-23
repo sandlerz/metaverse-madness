@@ -1,4 +1,5 @@
-import { useState } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useState } from 'react'
 import { Gallery } from './components/Gallery/Gallery'
 import { GalleryCard } from './components/Gallery/components/GalleryCard'
 import { GalleryEnter } from './components/Gallery/components/GalleryEnter'
@@ -6,9 +7,7 @@ import { GalleryIcon } from './components/Gallery/components/GalleryIcon'
 import { GalleryImage } from './components/Gallery/components/GalleryImage'
 import { GalleryTitle } from './components/Gallery/components/GalleryTitle'
 import { Hero } from './components/Hero'
-import { Navigation } from './components/Navigation'
 import { Paragraph } from './components/Paragraph'
-import { SocialsIcons } from './components/SocialsIcons'
 import { string } from './data/strings'
 import { RGBType } from './interfaces/interfaces'
 import { HighlightBlock } from './components/HighlightBlock/HighlightBlock'
@@ -21,22 +20,18 @@ import { HighlightBlockBodyItemsV2 } from './components/HighlightBlock/component
 import { BackgroundHoverEffect } from './components/BackgroundHoverEffect/BackgroundHoverEffect'
 import { HighlightBlockBodyItemsV3 } from './components/HighlightBlock/components/HighlightBlockBody/components/HighlightBlockBodyItemsV3'
 import { BgImagesDecoration } from './components/BgImagesDecoration/BgImagesDecoration'
+import FetchPagesCollection from './service/queries/pagesCollectionQuery'
+import { ParallaxEffect } from './components/ParallaxEffect'
 
 function App() {
-  const {
-    hero,
-    sectionOne,
-    gallery,
-    initialBackgroundColor,
-    highlightBlock1,
-    highlightBlock2,
-    highlightBlock3,
-    highlightBlock4,
-    bgImgs,
-  } = string
+  const { initialBackgroundColor, bgImgs, founderBlock } = string
 
-  const [backgroundColor, setBackgroundColor] = useState<RGBType>(
-    initialBackgroundColor
+  const [homeData, setHomeData] = useState(null)
+  const { gallerys, heroImage, title, blocks, paragraphs } =
+    homeData || ({} as any)
+
+  const [backgroundColor, setBackgroundColor] = useState<RGBType | undefined>(
+    undefined
   )
 
   const [backgroundImage, setBackgroundImage] = useState({
@@ -44,91 +39,120 @@ function App() {
     img: '',
   })
 
+  useEffect(() => {
+    if (backgroundColor) {
+      const bodyStyle = document.body.style
+      bodyStyle.transition = 'background 1s ease'
+      bodyStyle.backgroundColor = `rgb(${Object.values(backgroundColor)})`
+    }
+  }, [backgroundColor])
+
+  useEffect(() => {
+    FetchPagesCollection('Home').then(page => setHomeData(page))
+  }, [])
+
+  if (!homeData) return <div>loading...</div>
+
   return (
-    <main
-      className="min-h-screen flex flex-col items-center  text-white  mx-auto py-9 relative transition-[background] duration-500 z-20 overflow-hidden"
-      style={{
-        backgroundColor: `rgb(${Object.values(backgroundColor)})`,
-      }}
-    >
-      <Navigation />
-      <SocialsIcons />
-      <Hero heroText={hero.text} />
-      <Paragraph
-        eyeBrow={sectionOne.eyeBrow}
-        paragraph={sectionOne.text}
-        className="section-space page-width"
-      />
+    <main className="text-white relative transition-[background] duration-500 z-20 max-w-[1440px] px-32 m-auto mt-14">
+      <Hero heroText={title} heroImage={heroImage} />
 
-      <Gallery
-        eyeBrow={gallery.eyeBrow}
-        title={gallery.title}
-        setColorHover={setBackgroundColor}
-        initialColorHover={initialBackgroundColor}
-        setImageHover={setBackgroundImage}
-        className="section-space page-width"
-      >
-        {gallery.cards.map(card => (
-          <GalleryCard card={card} key={card.title}>
-            <GalleryImage />
-            <GalleryIcon />
-            <GalleryTitle />
-            <GalleryEnter />
-          </GalleryCard>
+      <ParallaxEffect>
+        <Paragraph
+          eyeBrow={paragraphs.items[0].eyeBrow}
+          paragraph={paragraphs.items[0].paragraph.json}
+        />
+      </ParallaxEffect>
+
+      <ParallaxEffect>
+        {gallerys.items.map((gallery: any) => (
+          <Gallery
+            key={gallery.title}
+            eyeBrow={gallery.eyeBrow}
+            title={gallery.title}
+            setColorHover={setBackgroundColor}
+            initialColorHover={initialBackgroundColor}
+            setImageHover={setBackgroundImage}
+          >
+            {gallery.galleryCard.items.map((card: any) => (
+              <GalleryCard card={card} key={card.title}>
+                <GalleryImage />
+                <GalleryIcon />
+                <GalleryTitle />
+                <GalleryEnter />
+              </GalleryCard>
+            ))}
+          </Gallery>
         ))}
-      </Gallery>
+      </ParallaxEffect>
 
-      <HighlightBlock
-        data={highlightBlock1}
-        className="section-space page-width"
-      >
-        <HighlightBlockImage />
-        <HighlightBlockBody>
-          <EyeBrow eyeBrow={highlightBlock1.eyeBrow} />
-          <HighlightBlockBodyTitle />
-          <HighlightBlockBodyItems />
-        </HighlightBlockBody>
-      </HighlightBlock>
-
-      <HighlightBlock
-        data={highlightBlock2}
-        className="section-space page-width"
-      >
-        <HighlightBlockBody>
-          <EyeBrow eyeBrow={highlightBlock1.eyeBrow} />
-          <HighlightBlockBodyTitle />
-          <HighlightBlockBodyItemsV2 />
-        </HighlightBlockBody>
-        <HighlightBlockImage />
-      </HighlightBlock>
-
-      <HighlightBlock
-        data={highlightBlock3}
-        className="section-space page-width flex-col"
-      >
-        <HighlightBlockBody>
-          <EyeBrow eyeBrow={highlightBlock3.eyeBrow} className="text-center" />
-          <HighlightBlockBodyTitle className="text-center w-[962px] mx-auto" />
+      <ParallaxEffect>
+        <HighlightBlock data={blocks.items[0]}>
           <HighlightBlockImage />
-        </HighlightBlockBody>
-      </HighlightBlock>
+          <HighlightBlockBody>
+            <EyeBrow eyeBrow={blocks.items[1].eyeBrow} />
+            <HighlightBlockBodyTitle />
+            <HighlightBlockBodyItems />
+          </HighlightBlockBody>
+        </HighlightBlock>
+      </ParallaxEffect>
 
-      <HighlightBlock
-        data={highlightBlock4}
-        className="section-space page-width flex-col"
-      >
-        <HighlightBlockBody>
-          <EyeBrow eyeBrow={highlightBlock4.eyeBrow} className="text-center" />
-          <HighlightBlockBodyTitle className="text-center w-[962px] mx-auto" />
-          <HighlightBlockBodyItemsV3 />
-        </HighlightBlockBody>
-      </HighlightBlock>
+      <ParallaxEffect>
+        <HighlightBlock data={blocks.items[1]}>
+          <HighlightBlockBody>
+            <EyeBrow eyeBrow={blocks.items[1].eyeBrow} />
+            <HighlightBlockBodyTitle />
+            <HighlightBlockBodyItemsV2 />
+          </HighlightBlockBody>
+          <HighlightBlockImage />
+        </HighlightBlock>
+      </ParallaxEffect>
+
+      <ParallaxEffect>
+        <HighlightBlock data={blocks.items[2]}>
+          <HighlightBlockBody>
+            <EyeBrow
+              eyeBrow={blocks.items[2].eyeBrow}
+              className="text-center"
+            />
+            <HighlightBlockBodyTitle className="text-center w-[962px] mx-auto" />
+            <HighlightBlockImage />
+          </HighlightBlockBody>
+        </HighlightBlock>
+      </ParallaxEffect>
+
+      <ParallaxEffect>
+        <HighlightBlock data={blocks.items[3]}>
+          <HighlightBlockBody>
+            <EyeBrow
+              eyeBrow={blocks.items[3].eyeBrow}
+              className="text-center"
+            />
+            <HighlightBlockBodyTitle className="text-center w-[962px] mx-auto" />
+            <HighlightBlockBodyItemsV3 />
+          </HighlightBlockBody>
+        </HighlightBlock>
+      </ParallaxEffect>
 
       <BackgroundHoverEffect
         img={backgroundImage.img}
         onHover={backgroundImage.onHover}
       />
 
+      <ParallaxEffect>
+        <div className="relative flex gap-8 h-[610px]">
+          <div className="w-1/3">
+            <h3>{founderBlock.name}</h3>
+            <span>{founderBlock.position}</span>
+            <p>{founderBlock.text}</p>
+          </div>
+          <img
+            className="object-cover w-2/3 rounded-xl"
+            src={founderBlock.img.url}
+            alt=""
+          />
+        </div>
+      </ParallaxEffect>
       <BgImagesDecoration bgImgs={bgImgs} />
     </main>
   )

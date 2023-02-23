@@ -9,15 +9,13 @@
 
   body {
     @apply bg-bgColor;
+    overflow-x: hidden;
+    min-height: 100vh;
   }
 }
 
 b {
   @apply font-bold text-white;
-}
-
-.page-width {
-  @apply max-w-[1440px] px-32;
 }
 
 .galleryCard:hover *:not(.titleRotate) {
@@ -36,4 +34,8 @@ h3 {
 
 .section-space {
   @apply my-10;
+}
+
+main > *:not(:last-of-type):not(img) {
+  margin-bottom: 70px;
 }

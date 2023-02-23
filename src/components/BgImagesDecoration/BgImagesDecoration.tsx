@@ -14,7 +14,7 @@ export const BgImagesDecoration = ({ bgImgs }: Props) => {
       {bgImgs.map(({ url, top, right, left, bottom }) => (
         <img
           src={url}
-          key={url}
+          key={url + top}
           className="absolute -z-50"
           style={{
             top,

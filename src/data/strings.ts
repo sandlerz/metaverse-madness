@@ -17,14 +17,15 @@ import bgColor1 from '../assets/BgBlurColor/1.png'
 import bgColor2 from '../assets/BgBlurColor/2.png'
 import bgColor3 from '../assets/BgBlurColor/3.png'
 import bgColor4 from '../assets/BgBlurColor/4.png'
-import bgColor5 from '../assets/BgBlurColor/5.png'
 import bgColor6 from '../assets/BgBlurColor/6.png'
 import bgColor7 from '../assets/BgBlurColor/7.png'
+
+import founderImageBlock from '../assets/founderBlock.png'
 
 import world from '../assets/world.png'
 
 export const string = {
-  initialBackgroundColor: { r: 26, g: 35, b: 46 },
+  initialBackgroundColor: { r: 27, g: 27, b: 27 },
   hero: {
     text: 'Home',
   },
@@ -149,11 +150,6 @@ export const string = {
       left: -80,
     },
     {
-      url: bgColor5,
-      top: 0,
-      left: 0,
-    },
-    {
       url: bgColor6,
       bottom: 675,
       left: -50,
@@ -170,4 +166,12 @@ export const string = {
       left: 0,
     },
   ],
+  founderBlock: {
+    name: 'Samantha',
+    position: 'Founder Metaverus',
+    text: "“With the development of today's technology, metaverse is very useful for today's work, or can be called web 3.0. by using metaverse you can use it as anything”",
+    img: {
+      url: founderImageBlock,
+    },
+  },
 }

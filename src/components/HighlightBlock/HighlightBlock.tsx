@@ -1,17 +1,19 @@
 import { createContext, useContext } from 'react'
+import { Image } from '../../interfaces/interfaces'
 
 interface Items {
-  title?: string
-  text: string
-  icon?: string
-  img?: string
+  items: {
+    title: string
+    icon?: Image
+    image?: Image
+  }[]
 }
 
 interface HighlightBlockData {
-  img?: string
+  image?: Image
   eyeBrow: string
-  title?: string
-  items?: Items[]
+  title: string
+  items?: Items
 }
 
 interface HighlightBlockContextValues {

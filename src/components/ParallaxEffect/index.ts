@@ -1,0 +1,1 @@
+export { ParallaxEffect } from './ParallaxEffect'

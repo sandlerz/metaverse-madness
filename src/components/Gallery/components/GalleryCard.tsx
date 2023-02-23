@@ -11,8 +11,8 @@ import { RGBType } from '../../../interfaces/interfaces'
 type Card = {
   title: string
   enter: string
-  img: string
-  icon: string
+  image: { url: string }
+  icon: { url: string }
 }
 
 interface Props {
@@ -21,7 +21,7 @@ interface Props {
 }
 
 interface GalleryCardContextValue {
-  data: Card
+  card: Card
   imgRGB: RGBType
   setImgRGB: Dispatch<SetStateAction<RGBType>>
 }
@@ -30,17 +30,16 @@ const GalleryCardContext = createContext({} as GalleryCardContextValue)
 export const useGalleryCardContext = () => useContext(GalleryCardContext)
 
 export const GalleryCard = ({ children, card }: Props) => {
-  const [imgRGB, setImgRGB] = useState<{ r: number; g: number; b: number }>({
-    r: 0,
-    g: 0,
-    b: 0,
-  })
   const { setColorHover, initialColorHover, setImageHover } = useGallery()
+
+  const [imgRGB, setImgRGB] = useState<RGBType>(
+    initialColorHover || { r: 0, g: 0, b: 0, a: 0 }
+  )
 
   return (
     <GalleryCardContext.Provider
       value={{
-        data: card,
+        card,
         imgRGB,
         setImgRGB,
       }}
@@ -52,7 +51,7 @@ export const GalleryCard = ({ children, card }: Props) => {
           setImageHover &&
             setImageHover({
               onHover: true,
-              img: card.img,
+              img: card.image.url,
             })
         }}
         onMouseLeave={() => {
@@ -60,7 +59,7 @@ export const GalleryCard = ({ children, card }: Props) => {
           setImageHover &&
             setImageHover({
               onHover: false,
-              img: card.img,
+              img: card.image.url,
             })
         }}
       >
