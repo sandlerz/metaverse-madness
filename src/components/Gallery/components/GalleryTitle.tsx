@@ -8,7 +8,7 @@ export const GalleryTitle = () => {
   return (
     <>
       <h3 className="title font-bold text-2xl opacity-0">{title}</h3>
-      <h3 className="titleRotate font-bold text-3xl absolute inset-0 whitespace-nowrap flex justify-center items-center rotate-[270deg]">
+      <h3 className="titleRotate font-bold text-3xl absolute inset-0 whitespace-nowrap flex justify-center items-center md:rotate-[270deg]">
         {title}
       </h3>
     </>

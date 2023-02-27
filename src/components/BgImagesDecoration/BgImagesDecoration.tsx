@@ -15,7 +15,7 @@ export const BgImagesDecoration = ({ bgImgs }: Props) => {
         <img
           src={url}
           key={url + top}
-          className="absolute -z-50"
+          className="absolute -z-50 overflow-hidden"
           style={{
             top,
             right,

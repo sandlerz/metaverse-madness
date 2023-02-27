@@ -37,9 +37,11 @@ export const Gallery = ({
 }: Props) => {
   return (
     <div className={`text-center ${className || ''}`}>
-      <EyeBrow eyeBrow={eyeBrow} className="mb-6" />
-      <h2 className="text-6xl font-bold w-[75%] mx-auto mb-8">{title}</h2>
-      <div className="flex h-96">
+      <EyeBrow eyeBrow={eyeBrow} />
+      <h2 className="text-3xl md:text-6xl font-bold w-4/5 md:w-3/4 mx-auto mb-8">
+        {title}
+      </h2>
+      <div className="flex flex-col md:flex-row h-[800px] md:h-96 gap-1 md:gap-0 ">
         <GalleryContext.Provider
           value={{
             setColorHover,

@@ -32,7 +32,13 @@ export const useHighlightBlock = () => useContext(HighlightBlockContext)
 export const HighlightBlock = ({ children, data, className }: Props) => {
   return (
     <HighlightBlockContext.Provider value={{ data }}>
-      <div className={`flex gap-16 ${className}`}>{children}</div>
+      <div
+        className={`flex flex-col md:flex-row gap-3 md:gap-16 ${
+          className || ''
+        }`}
+      >
+        {children}
+      </div>
     </HighlightBlockContext.Provider>
   )
 }

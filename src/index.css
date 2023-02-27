@@ -9,8 +9,9 @@
 
   body {
     @apply bg-bgColor;
-    overflow-x: hidden;
     min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
   }
 }
 
@@ -37,5 +38,15 @@ h3 {
 }
 
 main > *:not(:last-of-type):not(img) {
-  margin-bottom: 70px;
+  margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+  main > *:not(:last-of-type):not(img) {
+    margin-bottom: 70px;
+  }
+}
+
+footer {
+  margin: 0;
 }

@@ -22,7 +22,7 @@ export const ParallaxEffect = ({
     <motion.div
       initial="initial"
       whileInView="whileInview"
-      viewport={{ once: true, amount: 0, margin: '600px' }}
+      viewport={{ once: true, amount: 'some', margin: '100px' }}
       transition={{ duration: 2 }}
       variants={variants}
     >

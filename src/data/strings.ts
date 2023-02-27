@@ -170,7 +170,7 @@ export const string = {
     name: 'Samantha',
     position: 'Founder Metaverus',
     text: "“With the development of today's technology, metaverse is very useful for today's work, or can be called web 3.0. by using metaverse you can use it as anything”",
-    img: {
+    image: {
       url: founderImageBlock,
     },
   },

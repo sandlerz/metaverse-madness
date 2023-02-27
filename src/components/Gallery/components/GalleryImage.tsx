@@ -15,7 +15,7 @@ export const GalleryImage = () => {
   return (
     <img
       ref={imgEl}
-      className="absolute h-full object-cover object-center -z-10 left-[2%] top-0 rounded-2xl w-[98%]  transition-all duration-500 ease-linear"
+      className="absolute h-full object-cover object-center -z-10 left-0 md:left-[2%] top-0 rounded-2xl w-full md:w-[98%] transition-all duration-500 ease-linear"
       src={url}
       crossOrigin="anonymous" // in order cavas can work with others domain
       onLoad={event => {

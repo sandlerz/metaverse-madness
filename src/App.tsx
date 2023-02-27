@@ -22,6 +22,8 @@ import { HighlightBlockBodyItemsV3 } from './components/HighlightBlock/component
 import { BgImagesDecoration } from './components/BgImagesDecoration/BgImagesDecoration'
 import FetchPagesCollection from './service/queries/pagesCollectionQuery'
 import { ParallaxEffect } from './components/ParallaxEffect'
+import { FounderBlock } from './components/FounderBlock/FounderBlock'
+import { Footer } from './components/Footer/Footer'
 
 function App() {
   const { initialBackgroundColor, bgImgs, founderBlock } = string
@@ -54,7 +56,7 @@ function App() {
   if (!homeData) return <div>loading...</div>
 
   return (
-    <main className="text-white relative transition-[background] duration-500 z-20 max-w-[1440px] px-32 m-auto mt-14">
+    <main className="text-white transition-[background] duration-500 z-20 max-w-[1440px] px-3 md:px-32 m-auto mt-4 md:mt-14 overflow-hidden">
       <Hero heroText={title} heroImage={heroImage} />
 
       <ParallaxEffect>
@@ -74,7 +76,7 @@ function App() {
             initialColorHover={initialBackgroundColor}
             setImageHover={setBackgroundImage}
           >
-            {gallery.galleryCard.items.map((card: any) => (
+            {gallery.galleryCard.items.slice(0, 5).map((card: any) => (
               <GalleryCard card={card} key={card.title}>
                 <GalleryImage />
                 <GalleryIcon />
@@ -90,7 +92,10 @@ function App() {
         <HighlightBlock data={blocks.items[0]}>
           <HighlightBlockImage />
           <HighlightBlockBody>
-            <EyeBrow eyeBrow={blocks.items[1].eyeBrow} />
+            <EyeBrow
+              eyeBrow={blocks.items[1].eyeBrow}
+              className="md:text-left"
+            />
             <HighlightBlockBodyTitle />
             <HighlightBlockBodyItems />
           </HighlightBlockBody>
@@ -100,7 +105,10 @@ function App() {
       <ParallaxEffect>
         <HighlightBlock data={blocks.items[1]}>
           <HighlightBlockBody>
-            <EyeBrow eyeBrow={blocks.items[1].eyeBrow} />
+            <EyeBrow
+              eyeBrow={blocks.items[1].eyeBrow}
+              className="md:text-left"
+            />
             <HighlightBlockBodyTitle />
             <HighlightBlockBodyItemsV2 />
           </HighlightBlockBody>
@@ -111,11 +119,8 @@ function App() {
       <ParallaxEffect>
         <HighlightBlock data={blocks.items[2]}>
           <HighlightBlockBody>
-            <EyeBrow
-              eyeBrow={blocks.items[2].eyeBrow}
-              className="text-center"
-            />
-            <HighlightBlockBodyTitle className="text-center w-[962px] mx-auto" />
+            <EyeBrow eyeBrow={blocks.items[2].eyeBrow} />
+            <HighlightBlockBodyTitle className="md:text-center" />
             <HighlightBlockImage />
           </HighlightBlockBody>
         </HighlightBlock>
@@ -128,31 +133,20 @@ function App() {
               eyeBrow={blocks.items[3].eyeBrow}
               className="text-center"
             />
-            <HighlightBlockBodyTitle className="text-center w-[962px] mx-auto" />
+            <HighlightBlockBodyTitle className="md:text-center" />
             <HighlightBlockBodyItemsV3 />
           </HighlightBlockBody>
         </HighlightBlock>
       </ParallaxEffect>
 
+      <FounderBlock data={founderBlock} />
+
+      <Footer />
+
       <BackgroundHoverEffect
         img={backgroundImage.img}
         onHover={backgroundImage.onHover}
       />
-
-      <ParallaxEffect>
-        <div className="relative flex gap-8 h-[610px]">
-          <div className="w-1/3">
-            <h3>{founderBlock.name}</h3>
-            <span>{founderBlock.position}</span>
-            <p>{founderBlock.text}</p>
-          </div>
-          <img
-            className="object-cover w-2/3 rounded-xl"
-            src={founderBlock.img.url}
-            alt=""
-          />
-        </div>
-      </ParallaxEffect>
       <BgImagesDecoration bgImgs={bgImgs} />
     </main>
   )

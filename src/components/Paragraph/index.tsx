@@ -13,7 +13,7 @@ export const Paragraph = ({ eyeBrow, paragraph, className }: Props) => {
   return (
     <div className={`text-center ${className}`}>
       <EyeBrow eyeBrow={eyeBrow} />
-      <div className="text-gray text-3xl leading-[180%] mb-5">
+      <div className="text-gray text-lg md:text-3xl leading-[180%] mb-5">
         {documentToReactComponents(paragraph)}
       </div>
       <img src={arrow} className="mx-auto" alt="" />
