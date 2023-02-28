@@ -26,10 +26,10 @@ import { FounderBlock } from './components/FounderBlock/FounderBlock'
 import { Footer } from './components/Footer/Footer'
 
 function App() {
-  const { initialBackgroundColor, bgImgs, founderBlock } = string
+  const { initialBackgroundColor, bgImgs } = string
 
   const [homeData, setHomeData] = useState(null)
-  const { gallerys, heroImage, title, blocks, paragraphs } =
+  const { gallerys, heroImage, title, blocks, paragraphs, founder } =
     homeData || ({} as any)
 
   const [backgroundColor, setBackgroundColor] = useState<RGBType | undefined>(
@@ -56,7 +56,7 @@ function App() {
   if (!homeData) return <div>loading...</div>
 
   return (
-    <main className="text-white transition-[background] duration-500 z-20 max-w-[1440px] px-3 md:px-32 m-auto mt-4 md:mt-14 overflow-hidden">
+    <main className="text-white transition-[background] duration-500 z-20 max-w-[1440px] px-3 md:px-32 m-auto mt-4 md:mt-14">
       <Hero heroText={title} heroImage={heroImage} />
 
       <ParallaxEffect>
@@ -139,7 +139,9 @@ function App() {
         </HighlightBlock>
       </ParallaxEffect>
 
-      <FounderBlock data={founderBlock} />
+      <ParallaxEffect>
+        <FounderBlock data={founder} />
+      </ParallaxEffect>
 
       <Footer />
 
@@ -147,6 +149,7 @@ function App() {
         img={backgroundImage.img}
         onHover={backgroundImage.onHover}
       />
+
       <BgImagesDecoration bgImgs={bgImgs} />
     </main>
   )

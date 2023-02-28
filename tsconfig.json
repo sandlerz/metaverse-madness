@@ -23,7 +23,8 @@
   "include": [
     "src",
     "postcss.config.cjs",
-    "tailwind.config.cjs"
+    "tailwind.config.cjs",
+    "globals.d.ts"
   ],
   "references": [
     {

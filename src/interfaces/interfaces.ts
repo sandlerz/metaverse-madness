@@ -8,4 +8,5 @@ export interface RGBType {
 export interface Image {
   url: string
   height?: string
+  description?: string
 }

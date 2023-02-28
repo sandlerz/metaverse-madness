@@ -13,7 +13,7 @@ interface props {
 export const FounderBlock = ({ data }: props) => {
   return (
     <>
-      <div className="flex flex-col lg:flex-row gap-8 lg:h-[610px]">
+      <div className="flex flex-col lg:flex-row gap-8 lg:h-[610px] mb-7">
         <div
           className={`flex-1 border rounded-xl border-[#6A6A6A] p-7 flex justify-end flex-col ${styles.bgGradient}`}
         >

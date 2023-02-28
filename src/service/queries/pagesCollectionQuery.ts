@@ -64,6 +64,16 @@ export const pagesCollectionQuery = `{
           }
         }
       }
+      founder {
+        ... on FounderBlock {
+          name
+          position
+          text
+          image {
+            url
+          }
+        }
+      }
     }
   }
 }`
@@ -72,8 +82,6 @@ const FetchPagesCollection = async (page: string) => {
   const {
     pagesCollection: { items },
   } = await Fercher(pagesCollectionQuery)
-
-  console.log(items.filter((item: any) => item.title === page)[0], 'query file')
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return items.filter((item: any) => item.title === page)[0]
